@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Góc Nhỏ Của Emyuu</title>
+</head>
+<body class="bg-pink-50 font-sans">
+    <header class="header">
+        <h1>EMYUU</h1>
+        <p>Nơi lưu giữ những câu chuyện nhỏ</p>
+    </header>
+
+    <main id="main-content" class="container">
+        </main>
+
+    <script>
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('main-content');
+                if (data.truyen.length === 0) {
+                    container.innerHTML = '<div class="card"><p>🌸 Góc nhỏ đang được chăm chút, truyện sẽ sớm ra mắt thôi nè! Cậu quay lại sau nhé!</p></div>';
+                } else {
+                    data.truyen.forEach(t => {
+                        container.innerHTML += `
+                            <div class="card">
+                                <h2>${t.ten}</h2>
+                                <p>${t.mo_ta}</p>
+                                <a href="${t.link}" class="btn">Đọc ngay</a>
+                            </div>
+                        `;
+                    });
+                }
+            });
+    </script>
+</body>
+</html>
